@@ -44,6 +44,19 @@ Option 2. Run it from command line by going into the directory and running
   java -jar target/wbeos-0.0.1-SNAPSHOT.jar
 
 
+AngularJS Page:
+===============
+
+After submitting the code to git, I made some time to do this. 
+
+Open the file src/main/resources/static/index.htm
+
+When the screen displays type in the place e.g. 'holborn' and click Search.
+
+
+If this doen't work then try postman.
+
+
 Use Postman:
 ============
 
