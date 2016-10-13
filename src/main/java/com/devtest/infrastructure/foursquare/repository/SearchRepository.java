@@ -9,24 +9,24 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FourSquareRepository implements IFourSquareRepository {
+public class SearchRepository implements ISearchRepository {
 
-    private static final Logger LOG = LoggerFactory.getLogger(FourSquareRepository.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SearchRepository.class);
 
     private final String fourSqUri;
     private final RestTemplate restTemplate;
     private final IJsonExtractor iJsonExtractor;
 
-    public FourSquareRepository(String fourSqUri,
-                                RestTemplate restTemplate,
-                                IJsonExtractor fourSquareVenuesExtractor) {
+    public SearchRepository(String fourSqUri,
+                            RestTemplate restTemplate,
+                            IJsonExtractor fourSquareVenuesExtractor) {
         this.fourSqUri = fourSqUri;
         this.restTemplate = restTemplate;
         this.iJsonExtractor = fourSquareVenuesExtractor;
     }
 
     @Override
-    public List<String> explore(String place) {
+    public List<String> search(String place) {
         List<String> venues = new ArrayList<>();
         try {
             String json = restTemplate.getForObject(fourSqUri, String.class, place);

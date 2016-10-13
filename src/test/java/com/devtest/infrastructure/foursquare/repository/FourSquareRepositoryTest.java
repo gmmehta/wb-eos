@@ -20,23 +20,29 @@ import static org.junit.Assert.assertThat;
 public class FourSquareRepositoryTest {
 
     @Autowired
-    private IFourSquareRepository fourSquareRepository;
+    private ISearchRepository fourSquareRepository;
 
     @Test
-    public void whenGivenPlaceIsEmpty() throws Exception {
-        List<String> venues = fourSquareRepository.explore("");
+    public void whenGivenPlaceIsNullThenReturnEmptyVenues() throws Exception {
+        List<String> venues = fourSquareRepository.search(null);
         assertThat(venues.isEmpty(), is(true));
     }
 
     @Test
-    public void whenGivenPlaceIsUnknown() throws Exception {
-        List<String> venues = fourSquareRepository.explore("sdhfsdkjfhsjkdfhsdjhsdkjfh");
+    public void whenGivenPlaceIsEmptyThenReturnEmptyVenues() throws Exception {
+        List<String> venues = fourSquareRepository.search("");
         assertThat(venues.isEmpty(), is(true));
     }
 
     @Test
-    public void whenGivenPlaceIsKnown() throws Exception {
-        List<String> venues = fourSquareRepository.explore("holborn");
+    public void whenGivenPlaceIsUnknownThenReturnEmptyVenues() throws Exception {
+        List<String> venues = fourSquareRepository.search("sdhfsdkjfhsjkdfhsdjhsdkjfh");
+        assertThat(venues.isEmpty(), is(true));
+    }
+
+    @Test
+    public void whenGivenPlaceIsKnownThenReturnVenues() throws Exception {
+        List<String> venues = fourSquareRepository.search("holborn");
         assertThat(venues.isEmpty(), is(false));
         assertThat(venues, Matchers.hasItems("National Gallery", "British Museum", "Somerset House", "Dishoom"));
     }

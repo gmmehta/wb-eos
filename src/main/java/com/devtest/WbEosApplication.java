@@ -1,7 +1,9 @@
 package com.devtest;
 
-import com.devtest.infrastructure.foursquare.repository.FourSquareRepository;
-import com.devtest.infrastructure.foursquare.repository.IFourSquareRepository;
+import com.devtest.infrastructure.ISearchService;
+import com.devtest.infrastructure.foursquare.repository.SearchRepository;
+import com.devtest.infrastructure.foursquare.repository.ISearchRepository;
+import com.devtest.infrastructure.foursquare.service.FourSquareSearchService;
 import com.devtest.infrastructure.foursquare.service.FourSquareVenuesExtractor;
 import com.devtest.infrastructure.foursquare.service.IJsonExtractor;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,10 +31,15 @@ public class WbEosApplication {
     }
 
     @Bean
-    public IFourSquareRepository fourSquareRepository(@Value("${fourSq.uri}") String fourSqUri,
-                                                      RestTemplate restTemplate,
-                                                      IJsonExtractor fourSquareVenuesExtractor) {
-        return new FourSquareRepository(fourSqUri, restTemplate, fourSquareVenuesExtractor);
+    public ISearchRepository fourSquareSearchRepository(@Value("${fourSq.uri}") String fourSqUri,
+                                                                  RestTemplate restTemplate,
+                                                                  IJsonExtractor fourSquareVenuesExtractor) {
+        return new SearchRepository(fourSqUri, restTemplate, fourSquareVenuesExtractor);
+    }
+
+    @Bean
+    public ISearchService fourSquareSearchService(ISearchRepository fourSquareRepository) {
+        return new FourSquareSearchService(fourSquareRepository);
     }
 
 }
