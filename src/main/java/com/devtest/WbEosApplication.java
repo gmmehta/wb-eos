@@ -2,6 +2,8 @@ package com.devtest;
 
 import com.devtest.infrastructure.foursquare.repository.FourSquareRepository;
 import com.devtest.infrastructure.foursquare.repository.IFourSquareRepository;
+import com.devtest.infrastructure.foursquare.service.FourSquareVenuesExtractor;
+import com.devtest.infrastructure.foursquare.service.IJsonExtractor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,9 +24,15 @@ public class WbEosApplication {
     }
 
     @Bean
+    public IJsonExtractor fourSquareVenuesExtractor() {
+        return new FourSquareVenuesExtractor();
+    }
+
+    @Bean
     public IFourSquareRepository fourSquareRepository(@Value("${fourSq.uri}") String fourSqUri,
-                                                      RestTemplate restTemplate) {
-        return new FourSquareRepository(fourSqUri, restTemplate);
+                                                      RestTemplate restTemplate,
+                                                      IJsonExtractor fourSquareVenuesExtractor) {
+        return new FourSquareRepository(fourSqUri, restTemplate, fourSquareVenuesExtractor);
     }
 
 }
