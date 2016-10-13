@@ -11,6 +11,8 @@ https://github.com/gmmehta/wb-eos
 NOTES:
 ======
 
+This project uses java 8.
+
 I have used SpringBoot to expose an endpoint to get the venus for a given place
 
 I have gone with the simple n-tier architecture and layers are separated using Interfaces 
