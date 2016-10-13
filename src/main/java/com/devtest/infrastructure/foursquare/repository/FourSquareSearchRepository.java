@@ -9,20 +9,20 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchRepository implements ISearchRepository {
+public class FourSquareSearchRepository implements ISearchRepository {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SearchRepository.class);
+    private static final Logger LOG = LoggerFactory.getLogger(FourSquareSearchRepository.class);
 
     private final String fourSqUri;
     private final RestTemplate restTemplate;
     private final IJsonExtractor iJsonExtractor;
 
-    public SearchRepository(String fourSqUri,
-                            RestTemplate restTemplate,
-                            IJsonExtractor fourSquareVenuesExtractor) {
+    public FourSquareSearchRepository(String fourSqUri,
+                                      RestTemplate restTemplate,
+                                      IJsonExtractor iJsonExtractor) {
         this.fourSqUri = fourSqUri;
         this.restTemplate = restTemplate;
-        this.iJsonExtractor = fourSquareVenuesExtractor;
+        this.iJsonExtractor = iJsonExtractor;
     }
 
     @Override

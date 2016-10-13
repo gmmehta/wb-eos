@@ -1,7 +1,7 @@
 package com.devtest;
 
 import com.devtest.infrastructure.ISearchService;
-import com.devtest.infrastructure.foursquare.repository.SearchRepository;
+import com.devtest.infrastructure.foursquare.repository.FourSquareSearchRepository;
 import com.devtest.infrastructure.foursquare.repository.ISearchRepository;
 import com.devtest.infrastructure.foursquare.service.FourSquareSearchService;
 import com.devtest.infrastructure.foursquare.service.FourSquareVenuesExtractor;
@@ -32,9 +32,9 @@ public class WbEosApplication {
 
     @Bean
     public ISearchRepository fourSquareSearchRepository(@Value("${fourSq.uri}") String fourSqUri,
-                                                                  RestTemplate restTemplate,
-                                                                  IJsonExtractor fourSquareVenuesExtractor) {
-        return new SearchRepository(fourSqUri, restTemplate, fourSquareVenuesExtractor);
+                                                        RestTemplate restTemplate,
+                                                        IJsonExtractor fourSquareVenuesExtractor) {
+        return new FourSquareSearchRepository(fourSqUri, restTemplate, fourSquareVenuesExtractor);
     }
 
     @Bean

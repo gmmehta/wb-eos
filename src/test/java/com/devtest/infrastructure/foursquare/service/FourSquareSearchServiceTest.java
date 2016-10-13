@@ -34,31 +34,31 @@ public class FourSquareSearchServiceTest {
     public void whenGivenPlaceIsNullThenReturnNoVenues() throws Exception {
         String place = null;
         List<String> expectedVenues = Arrays.asList("No venues found");
-        assertRecommendedVenuesNearPlace(place, expectedVenues);
+        assertRecommendedVenuesNearBy(place, expectedVenues);
     }
 
     @Test
     public void whenGivenPlaceIsEmptyThenReturnNoVenues() throws Exception {
         String place = "";
         List<String> expectedVenues = Arrays.asList("No venues found");
-        assertRecommendedVenuesNearPlace(place, expectedVenues);
+        assertRecommendedVenuesNearBy(place, expectedVenues);
     }
 
     @Test
     public void whenPlaceIsUnknownThenReturnNoVenues() throws Exception {
         String place = "unknown_place";
         List<String> expectedVenues = Arrays.asList("No venues found");
-        assertRecommendedVenuesNearPlace(place, expectedVenues);
+        assertRecommendedVenuesNearBy(place, expectedVenues);
     }
 
     @Test
     public void whenPlaceIsKnownThenReturnVenues() throws Exception {
         String place = "holborn";
         List<String> expectedVenues = Arrays.asList("National Gallery", "British Museum", "Somerset House", "Dishoom");
-        assertRecommendedVenuesNearPlace(place, expectedVenues);
+        assertRecommendedVenuesNearBy(place, expectedVenues);
     }
 
-    private void assertRecommendedVenuesNearPlace(String place, List<String> expectedVenues) throws Exception {
+    private void assertRecommendedVenuesNearBy(String place, List<String> expectedVenues) throws Exception {
         //given
         given(fourSquareSearchRepository.search(anyString())).willReturn(expectedVenues);
 

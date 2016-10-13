@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * FourSquareVenuesExtractor - for now simply extract the "name" of the venue.
- * You could have it extract more information and map it to your internal Venue
+ * FourSquareVenuesExtractor - for now simply extract the "name" of the venue object.
+ * You could have it extract more information and map it to your internal Venues
  * object.
  */
 public class FourSquareVenuesExtractor implements IJsonExtractor {
